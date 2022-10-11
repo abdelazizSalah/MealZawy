@@ -29,7 +29,11 @@ class CategoriesScreen extends StatelessWidget {
 
           /// children of any list should be the last elements in the widget
           children: dummyCategories.map((catItem) {
-            return CategoryItem(color: catItem.color, title: catItem.title);
+            return CategoryItem(
+              color: catItem.color,
+              title: catItem.title,
+              id: catItem.id,
+            );
           }).toList(),
         ),
       ),
