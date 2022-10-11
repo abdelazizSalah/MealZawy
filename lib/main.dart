@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          accentColor: Colors.orange[300],
+          primaryColor: Colors.deepPurple[900],
+          fontFamily: 'Raleway',
 
           /// styling the text
           textTheme: const TextTheme(
@@ -25,7 +28,8 @@ class MyApp extends StatelessWidget {
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
-              bodyMedium: TextStyle(fontSize: 18)),
+              bodyMedium:
+                  TextStyle(fontSize: 21, fontFamily: 'RobotoCondensed')),
 
           /// styling the appBar
           appBarTheme: AppBarTheme(

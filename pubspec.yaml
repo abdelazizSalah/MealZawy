@@ -75,22 +75,42 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
+  fonts: 
     - family: Raleway
       fonts:
-        - asset: Fonts/Raleway-Regular.ttf
-        - asset: Fonts/Raleway-Black.ttf
-        - asset: Fonts/Raleway-Bold.ttf
-          style: italic
-    - family: Roboto
-      fonts:
-        - asset: Fonts/RobotoCondensed-Regular.ttf
-        - asset: Fonts/RobotoCondensed-italic.ttf
-          style: italic
-        - asset: fonts/TrajanPro_Bold.ttf
+        - asset: assets/Fonts/Raleway-Regular.ttf
+        - asset: assets/Fonts/Raleway-Black.ttf
+          weight: 900
+        - asset: assets/Fonts/Raleway-Bold.ttf
           weight: 700
-        - asset: Fonts/RobotoCondensed-Light.ttf
-          weight: 400
+    - family: RobotoCondensed
+      fonts: 
+        - asset: assets/Fonts/RobotoCondensed-Regular.ttf
+        - asset: assets/Fonts/RobotoCondensed-Bold.ttf
+          weight: 700
+        - asset: assets/Fonts/RobotoCondensed-italic.ttf
+          style: italic
+        - asset: assets/Fonts/RobotoCondensed-Light.ttf
+          weight: 300
+
+
+  # fonts:
+  #   - family: Raleway
+  #     fonts:
+        # - asset: assets/Fonts/Raleway-Regular.ttf
+        # - asset: assets/Fonts/Raleway-Black.ttf
+        #   weight: 900
+        # - asset: assets/Fonts/Raleway-Bold.ttf
+        #   weight: 700
+    # - family: RobotoCondensed
+    #   fonts:
+        # - asset: assets/Fonts/RobotoCondensed-Regular.ttf
+        # - asset: assets/Fonts/RobotoCondensed-italic.ttf
+        #   style: italic
+        # - asset: assets/fonts/TrajanPro_Bold.ttf
+        #   weight: 700
+        # - asset: assets/Fonts/RobotoCondensed-Light.ttf
+        #   weight: 300
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

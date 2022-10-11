@@ -9,8 +9,8 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bodyLarge = Theme.of(context).textTheme.bodyMedium;
-
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
+    print('this is' + bodyMedium.toString());
     return Container(
       /// lets design our own card
       decoration: BoxDecoration(
@@ -27,9 +27,9 @@ class CategoryItem extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-            fontSize: bodyLarge?.fontSize,
-            fontWeight: bodyLarge?.fontWeight,
-          ),
+              fontSize: bodyMedium?.fontSize,
+              fontWeight: bodyMedium?.fontWeight,
+              fontFamily: bodyMedium?.fontFamily),
         ),
       ),
     );
