@@ -70,6 +70,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
@@ -91,9 +92,8 @@ class MainPage extends StatelessWidget {
           ...dummyCategories.map((item) {
             return Text(item.title,
                 style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                    fontWeight:
-                        Theme.of(context).textTheme.bodyLarge?.fontWeight,
+                    fontSize: bodyLarge?.fontSize,
+                    fontWeight: bodyLarge?.fontWeight,
                     color: item.color));
           }).toList()
         ],
