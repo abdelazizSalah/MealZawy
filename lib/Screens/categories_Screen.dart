@@ -8,19 +8,29 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 248, 244, 222),
-      child: GridView(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 300,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 15),
+    return Scaffold(
+      drawer: const Drawer(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.food_bank_rounded),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+        title: const Text("MealZawy"),
+      ),
+      body: Container(
+        color: Color.fromARGB(255, 248, 244, 222),
+        child: GridView(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 300,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 15),
 
-        /// children of any list should be the last elements in the widget
-        children: dummyCategories.map((catItem) {
-          return CategoryItem(color: catItem.color, title: catItem.title);
-        }).toList(),
+          /// children of any list should be the last elements in the widget
+          children: dummyCategories.map((catItem) {
+            return CategoryItem(color: catItem.color, title: catItem.title);
+          }).toList(),
+        ),
       ),
     );
   }

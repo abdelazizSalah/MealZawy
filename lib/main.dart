@@ -60,26 +60,7 @@ class MyApp extends StatelessWidget {
               /// end of the appBarTheme
               )),
       debugShowCheckedModeBanner: false,
-      home: const MainPage(),
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.food_bank_rounded),
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
-        title: Text("MealZawy"),
-      ),
-      body: CategoriesScreen(),
+      home: const CategoriesScreen(),
     );
   }
 }
