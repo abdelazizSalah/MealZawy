@@ -3,8 +3,7 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
-
-import 'package:flutter/foundation.dart';
+import 'Screens/categories_Screen.dart';
 import 'package:flutter/material.dart';
 import 'Data/dummy_data.dart';
 
@@ -23,9 +22,10 @@ class MyApp extends StatelessWidget {
 
               /// styling the body in the large formate
               bodyLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          )),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              bodyMedium: TextStyle(fontSize: 18)),
 
           /// styling the appBar
           appBarTheme: AppBarTheme(
@@ -70,7 +70,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bodyLarge = Theme.of(context).textTheme.bodyLarge;
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
@@ -80,24 +79,7 @@ class MainPage extends StatelessWidget {
         ),
         title: Text("MealZawy"),
       ),
-      body: GridView(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 30),
-
-        /// children of any list should be the last elements in the widget
-        children: [
-          ...dummyCategories.map((item) {
-            return Text(item.title,
-                style: TextStyle(
-                    fontSize: bodyLarge?.fontSize,
-                    fontWeight: bodyLarge?.fontWeight,
-                    color: item.color));
-          }).toList()
-        ],
-      ),
+      body: CategoriesScreen(),
     );
   }
 }

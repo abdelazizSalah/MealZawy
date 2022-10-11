@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Models/Categories.dart';
+import '../Models/categories.dart';
 
 const dummyCategories = [
   Categories(
