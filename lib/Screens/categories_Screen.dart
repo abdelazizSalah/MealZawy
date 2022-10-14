@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Wigdets/category_item.dart';
 import '../Data/dummy_data.dart';
@@ -18,7 +17,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text("MealZawy"),
       ),
       body: Container(
-        color: Color.fromARGB(255, 248, 244, 222),
+        color: const Color.fromARGB(255, 248, 244, 222),
         child: GridView(
           padding: const EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

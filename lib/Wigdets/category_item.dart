@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/main.dart';
 import '../Screens/category_meal_screen.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -10,9 +11,9 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(
       {required this.color, required this.title, required this.id});
 
-  void SelectCategory(BuildContext ctx) {
+  void selectCategory(BuildContext ctx) {
     Navigator.of(ctx)
-        .pushNamed('/category_route', arguments: {'title': title, 'id': id});
+        .pushNamed(MyApp.routeName, arguments: {'title': title, 'id': id});
   }
 
   @override
@@ -21,7 +22,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       /// this radius should be equal to the radius of the child
       borderRadius: BorderRadius.circular(15),
-      onTap: () => SelectCategory(context),
+      onTap: () => selectCategory(context),
       splashColor: Theme.of(context).accentColor,
       child: Container(
         /// lets design our own card

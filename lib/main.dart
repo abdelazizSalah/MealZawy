@@ -11,6 +11,7 @@ void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static String routeName = '/category_route';
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +57,8 @@ class MyApp extends StatelessWidget {
                     color: Colors.orange[300],
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    shadows: [
-                      const Shadow(
+                    shadows: const [
+                      Shadow(
                           blurRadius: 100,
                           color: Colors.amber,
                           offset: Offset(20, 10))
@@ -66,7 +67,10 @@ class MyApp extends StatelessWidget {
                 /// end of the appBarTheme
                 )),
         debugShowCheckedModeBanner: false,
-        home: const CategoriesScreen(),
-        routes: {'/category_route': (ctx) => CategoryMealScreen()});
+        initialRoute: '/ ',
+        routes: {
+          MyApp.routeName: (ctx) => CategoryMealScreen(),
+          '/': (ctx) => const CategoriesScreen()
+        });
   }
 }
