@@ -16,20 +16,25 @@ class MealItem extends StatelessWidget {
       required this.imgURL,
       required this.title});
 
+  void selectMeal() {}
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      margin: const EdgeInsets.all(10),
-      elevation: 20,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-        child: Image.network(
-          imgURL,
-          height: 250,
-          width: double.infinity,
-          fit: BoxFit.cover,
+    return InkWell(
+      onTap: selectMeal,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        margin: const EdgeInsets.all(10),
+        elevation: 20,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+          child: Image.network(
+            imgURL,
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
