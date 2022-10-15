@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../Data/dummy_data.dart';
 import '../Models/meal.dart';
+import '../Wigdets/meal_item.dart';
 
 class CategoryMealScreen extends StatelessWidget {
+  const CategoryMealScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Map<String, String> Args =
@@ -22,18 +25,22 @@ class CategoryMealScreen extends StatelessWidget {
       return meal.categories.contains(catID);
     }).toList();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(catTitle),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            ...mealsList.map((meal) {
-              return Text(meal.title);
-            }).toList()
-          ],
+        appBar: AppBar(
+          title: Text(catTitle),
         ),
-      ),
-    );
+        body: Container(
+          color: Theme.of(context).colorScheme.background,
+          child: ListView.builder(
+            itemBuilder: (ctx, index) {
+              return MealItem(
+                  affordability: mealsList[index].affordability,
+                  complexity: mealsList[index].complexity,
+                  duration: mealsList[index].duration,
+                  imgURL: mealsList[index].imgURL,
+                  title: mealsList[index].title);
+            },
+            itemCount: mealsList.length,
+          ),
+        ));
   }
 }

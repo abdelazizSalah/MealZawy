@@ -17,8 +17,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-            accentColor: Colors.orange[300],
-            primaryColor: Colors.deepPurple[900],
+            // color scheme bt5lek t2dr enk t3ml alwan mokhtalefa kter gedan
+            colorScheme: const ColorScheme(
+                brightness: Brightness.light,
+                primary: Color.fromARGB(255, 51, 29, 150),
+                onPrimary: Color.fromARGB(255, 255, 183, 77),
+                secondary: Colors.orange,
+                onSecondary: Colors.orange,
+                error: Colors.orange,
+                onError: Colors.orange,
+                background: Color.fromARGB(255, 249, 243, 236),
+                onBackground: Colors.orange,
+                surface: Colors.orange,
+                onSurface: Colors.orange),
             fontFamily: 'Raleway',
 
             /// styling the text
@@ -35,16 +46,13 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
 
             /// styling the appBar
-            appBarTheme: AppBarTheme(
+            appBarTheme: const AppBarTheme(
 
                 ///Text Themeing
-                toolbarTextStyle: const TextStyle(
+                toolbarTextStyle: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
-
-                ///defining the background color
-                backgroundColor: Colors.deepPurple[900],
 
                 /// centerlizing the title
                 centerTitle: true,
@@ -54,10 +62,10 @@ class MyApp extends StatelessWidget {
 
                 /// Styling the title text
                 titleTextStyle: TextStyle(
-                    color: Colors.orange[300],
+                    color: Color.fromARGB(255, 255, 183, 77),
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    shadows: const [
+                    shadows: [
                       Shadow(
                           blurRadius: 100,
                           color: Colors.amber,
@@ -67,9 +75,9 @@ class MyApp extends StatelessWidget {
                 /// end of the appBarTheme
                 )),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/ ',
+        initialRoute: '/',
         routes: {
-          MyApp.routeName: (ctx) => CategoryMealScreen(),
+          MyApp.routeName: (ctx) => const CategoryMealScreen(),
           '/': (ctx) => const CategoriesScreen()
         });
   }

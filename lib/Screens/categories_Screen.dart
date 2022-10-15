@@ -7,6 +7,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       drawer: const Drawer(),
       appBar: AppBar(
@@ -17,7 +18,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text("MealZawy"),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 248, 244, 222),
+        color: theme.colorScheme.background,
         child: GridView(
           padding: const EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
