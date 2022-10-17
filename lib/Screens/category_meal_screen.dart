@@ -8,10 +8,10 @@ class CategoryMealScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, String> Args =
+    final Map<String, String> args =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    final String catTitle = Args['title'] as String;
-    final catID = Args['id'];
+    final String catTitle = args['title'] as String;
+    final catID = args['id'];
 
     /// we need to make a list filtered by the id
     /// that each category contains only the meals that has its id
@@ -33,6 +33,7 @@ class CategoryMealScreen extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (ctx, index) {
               return MealItem(
+                  id: mealsList[index].id,
                   affordability: mealsList[index].affordability,
                   complexity: mealsList[index].complexity,
                   duration: mealsList[index].duration,

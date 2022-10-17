@@ -3,6 +3,7 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
+import './Screens/meal_details_screen.dart';
 import './Screens/category_meal_screen.dart';
 import 'Screens/categories_Screen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           MyApp.routeName: (ctx) => const CategoryMealScreen(),
-          '/': (ctx) => const CategoriesScreen()
+          '/': (ctx) => const CategoriesScreen(),
+          MealDetails.routeName: (ctx) => const MealDetails(),
         });
   }
 }
