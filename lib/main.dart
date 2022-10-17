@@ -3,6 +3,8 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
+import 'package:project/Screens/tabs_screen.dart';
+
 import './Screens/meal_details_screen.dart';
 import './Screens/category_meal_screen.dart';
 import 'Screens/categories_Screen.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.light,
                 primary: Color.fromARGB(255, 51, 29, 150),
                 onPrimary: Color.fromARGB(255, 255, 183, 77),
-                secondary: Colors.orange,
+                secondary: Colors.amber,
                 onSecondary: Colors.orange,
                 error: Colors.orange,
                 onError: Colors.orange,
@@ -85,9 +87,9 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                          blurRadius: 100,
-                          color: Colors.amber,
-                          offset: Offset(20, 10))
+                        blurRadius: 150,
+                        color: Colors.amber,
+                      )
                     ])
 
                 /// end of the appBarTheme
@@ -96,7 +98,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           MyApp.routeName: (ctx) => const CategoryMealScreen(),
-          '/': (ctx) => const CategoriesScreen(),
+          '/': (ctx) => const TabsScreen(),
           MealDetails.routeName: (ctx) => const MealDetails(),
         },
         // onGenerateRoute: (settings) => MaterialPageRoute(builder: )),
