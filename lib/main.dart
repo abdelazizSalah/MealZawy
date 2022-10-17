@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                 onError: Colors.orange,
                 background: Color.fromARGB(255, 249, 243, 236),
                 onBackground: Colors.orange,
-                surface: Colors.orange,
+                surface: Color.fromARGB(50, 169, 144, 239),
                 onSurface: Colors.orange),
             fontFamily: 'Raleway',
 
@@ -44,6 +44,23 @@ class MyApp extends StatelessWidget {
                 bodyMedium: TextStyle(
                     fontSize: 20,
                     fontFamily: 'RobotoCondensed',
+                    fontWeight: FontWeight.bold),
+                bodySmall: TextStyle(
+                  fontSize: 20,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 100,
+                      color: Colors.black87,
+                    )
+                  ],
+                  fontFamily: 'RobotoCondensed',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                ),
+                displaySmall: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Raleway',
+                    fontSize: 14,
                     fontWeight: FontWeight.bold)),
 
             /// styling the appBar
