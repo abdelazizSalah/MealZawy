@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Wigdets/main_drawer.dart';
 import '../Screens/categories_Screen.dart';
 import '../Screens/favorites.dart';
 
@@ -23,6 +24,7 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('MealZawy')),
+      drawer: const MainDrawer(),
       body: _screens[_screenIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 200,
