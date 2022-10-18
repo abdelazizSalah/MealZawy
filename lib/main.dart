@@ -87,9 +87,9 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                        blurRadius: 250,
-                        color: Colors.amber,
-                      )
+                          blurRadius: 100,
+                          color: Colors.amber,
+                          offset: Offset(10, 10))
                     ])
 
                 /// end of the appBarTheme
