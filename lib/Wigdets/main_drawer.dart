@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
@@ -6,11 +7,13 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final nav = Navigator.of(context);
 
-    Widget buildListTile(IconData icon, String title) {
+    Widget buildListTile(IconData icon, String title, tapHandler) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: ListTile(
+          onTap: tapHandler,
           leading: Icon(icon),
           title: Text(
             title,
@@ -41,8 +44,12 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-          buildListTile(Icons.restaurant, 'Meals'),
-          buildListTile(Icons.settings, 'Filters'),
+          buildListTile(Icons.restaurant, 'Meals', () {
+            nav.pushNamed('/');
+          }),
+          buildListTile(Icons.settings, 'Filters', () {
+            nav.pushNamed(FiltersScreen.routeName);
+          }),
         ],
       ),
     );

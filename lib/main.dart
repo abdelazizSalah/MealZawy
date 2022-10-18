@@ -3,11 +3,11 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
-import 'package:project/Screens/tabs_screen.dart';
-
+import './Screens/filters_screen.dart';
+import './Screens/tabs_screen.dart';
 import './Screens/meal_details_screen.dart';
 import './Screens/category_meal_screen.dart';
-import 'Screens/categories_Screen.dart';
+import './Screens/categories_Screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -97,9 +97,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          MyApp.routeName: (ctx) => const CategoryMealScreen(),
           '/': (ctx) => const TabsScreen(),
+          MyApp.routeName: (ctx) => const CategoryMealScreen(),
           MealDetails.routeName: (ctx) => const MealDetails(),
+          FiltersScreen.routeName: (ctx) => const FiltersScreen(),
         },
         // onGenerateRoute: (settings) => MaterialPageRoute(builder: )),
         onUnknownRoute: (settings) {
