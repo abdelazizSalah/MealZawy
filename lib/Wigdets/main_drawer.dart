@@ -45,10 +45,10 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           buildListTile(Icons.restaurant, 'Meals', () {
-            nav.pushNamed('/');
+            nav.pushReplacementNamed('/');
           }),
           buildListTile(Icons.settings, 'Filters', () {
-            nav.pushNamed(FiltersScreen.routeName);
+            nav.pushReplacementNamed(FiltersScreen.routeName);
           }),
         ],
       ),

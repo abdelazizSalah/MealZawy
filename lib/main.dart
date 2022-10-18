@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                 background: Color.fromARGB(255, 249, 243, 236),
                 onBackground: Colors.orange,
                 surface: Color.fromARGB(50, 169, 144, 239),
-                onSurface: Colors.orange),
+                onSurface: Color.fromARGB(255, 41, 97, 182)),
             fontFamily: 'Raleway',
 
             /// styling the text

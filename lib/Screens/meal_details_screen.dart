@@ -18,7 +18,7 @@ class MealDetails extends StatelessWidget {
         decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color.fromARGB(255, 49, 51, 194))),
+            border: Border.all(color: theme.colorScheme.onSurface)),
         child: widChild);
   }
 
@@ -41,6 +41,19 @@ class MealDetails extends StatelessWidget {
 
     final theme = Theme.of(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: theme.colorScheme.onSurface,
+        child: Icon(
+          color: theme.colorScheme.onPrimary,
+          Icons.delete,
+        ),
+        onPressed: () {
+          /// we can send with the pop any thing we want to be
+          /// sent back to the calling widget which helps us to
+          /// transfere the data back and forth
+          Navigator.of(context).pop(id);
+        },
+      ),
       appBar: AppBar(
         title: Text(selectedMeal.title),
       ),
