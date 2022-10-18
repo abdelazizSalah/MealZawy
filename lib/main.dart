@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                        blurRadius: 150,
+                        blurRadius: 250,
                         color: Colors.amber,
                       )
                     ])

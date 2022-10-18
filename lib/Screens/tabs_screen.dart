@@ -42,7 +42,7 @@ class _TabsScreenState extends State<TabsScreen> {
                       Icons.favorite,
                       color: _iconColor1 == true ? Colors.amber : Colors.white,
                     ),
-                    text: 'Favs',
+                    text: 'Favorites',
                     iconMargin: const EdgeInsets.all(4),
                   ),
                 ]),
