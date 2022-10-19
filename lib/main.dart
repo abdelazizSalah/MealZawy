@@ -26,6 +26,24 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Meal> myMeals = dummyMeals;
+  List<Meal> favorites = [];
+
+  bool isItFav(String id) {
+    return favorites.any((meal) => meal.id == id);
+  }
+
+  void toggleFav(String id) {
+    var mealIndex = favorites.indexWhere((meal) => meal.id == id);
+    setState(() {
+      if (mealIndex >= 0) {
+        /// this means that it is exist so we need to remove it from there
+        favorites.removeAt(mealIndex);
+      } else {
+        /// this means that we want to add it
+        favorites.add(myMeals.firstWhere((meal) => meal.id == id));
+      }
+    });
+  }
 
   Map<String, bool> filter = {
     'Vegiterian': false,
@@ -142,9 +160,10 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (ctx) => const TabsScreen(),
+          '/': (ctx) => TabsScreen(favs: favorites),
           MyApp.routeName: (ctx) => CategoryMealScreen(meals: myMeals),
-          MealDetails.routeName: (ctx) => const MealDetails(),
+          MealDetails.routeName: (ctx) =>
+              MealDetails(isItFav: isItFav, toggleFav: toggleFav),
           FiltersScreen.routeName: (ctx) => FiltersScreen(
                 filters: filter,
                 saveFilters: saveFilters,

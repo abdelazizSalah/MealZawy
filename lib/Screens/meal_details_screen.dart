@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../Data/dummy_data.dart';
 
 class MealDetails extends StatelessWidget {
-  const MealDetails({super.key});
+  MealDetails({super.key, required this.toggleFav, required this.isItFav});
   static const routeName = '/meals-route';
+  // bool isFav = false;
+  final toggleFav;
+  final isItFav;
 
   /// utility method to avoid duplication of code
   /// responsiple for displaying the container and list widget in side it
@@ -58,6 +61,14 @@ class MealDetails extends StatelessWidget {
         },
       ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              tooltip: isItFav(id)
+                  ? 'Remove it from favorites!'
+                  : 'Add it to favorites!',
+              onPressed: () => toggleFav(id),
+              icon: Icon(isItFav(id) ? Icons.star : Icons.star_border))
+        ],
         title: Text(selectedMeal.title),
       ),
       body: Container(
