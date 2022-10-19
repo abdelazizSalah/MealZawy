@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import '../Data/dummy_data.dart';
 import '../Models/meal.dart';
 import '../Wigdets/meal_item.dart';
 
 class CategoryMealScreen extends StatefulWidget {
-  const CategoryMealScreen({super.key});
+  final List<Meal> meals;
+  const CategoryMealScreen({super.key, required this.meals});
 
   @override
   State<CategoryMealScreen> createState() => _CategoryMealScreenState();
@@ -35,7 +33,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
       /// 3- m722a condition el hwa
       /// 4- en el categories bta3t el meal el hattl3 lazm tkon nfs
       /// el category bta3 el meal ena ana da5el 3leha
-      mealsList = dummyMeals.where((meal) {
+      mealsList = widget.meals.where((meal) {
         return meal.categories.contains(catID);
       }).toList();
       initiated = true;

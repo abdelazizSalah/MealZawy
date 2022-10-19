@@ -3,18 +3,49 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
+import 'package:project/Data/dummy_data.dart';
+
 import './Screens/filters_screen.dart';
 import './Screens/tabs_screen.dart';
 import './Screens/meal_details_screen.dart';
 import './Screens/category_meal_screen.dart';
 import './Screens/categories_Screen.dart';
+import 'Models/meal.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
   static String routeName = '/category_route';
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<Meal> myMeals = dummyMeals;
+
+  Map<String, bool> filter = {
+    'Vegiterian': false,
+    'Vegan': false,
+    'Gluten': false,
+    'Lactose': false,
+  };
+
+  void saveFilters(Map<String, bool> newFilters) {
+    setState(() {
+      filter = newFilters;
+
+      // exclute the meals
+      myMeals = dummyMeals.where((meal) {
+        if (!meal.isGlutenFree && filter['Gluten'] as bool) return false;
+        if (!meal.isLactoseFree && filter['Lactose'] as bool) return false;
+        if (!meal.isVegetarian && filter['Vegiterian'] as bool) return false;
+        if (!meal.isVegan && filter['Vegan'] as bool) return false;
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +141,12 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (ctx) => const TabsScreen(),
-          MyApp.routeName: (ctx) => const CategoryMealScreen(),
+          MyApp.routeName: (ctx) => CategoryMealScreen(meals: myMeals),
           MealDetails.routeName: (ctx) => const MealDetails(),
-          FiltersScreen.routeName: (ctx) => const FiltersScreen(),
+          FiltersScreen.routeName: (ctx) => FiltersScreen(
+                filters: filter,
+                saveFilters: saveFilters,
+              ),
         },
         // onGenerateRoute: (settings) => MaterialPageRoute(builder: )),
         onUnknownRoute: (settings) {
