@@ -37,33 +37,45 @@ class MyApp extends StatelessWidget {
 
             /// styling the text
             textTheme: const TextTheme(
-
-                /// styling the body in the large formate
-                bodyLarge: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                bodyMedium: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'RobotoCondensed',
-                    fontWeight: FontWeight.bold),
-                bodySmall: TextStyle(
+              /// styling the body in the large formate
+              bodyLarge: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              bodyMedium: TextStyle(
                   fontSize: 20,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 100,
-                      color: Colors.black87,
-                    )
-                  ],
                   fontFamily: 'RobotoCondensed',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber,
-                ),
-                displaySmall: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Raleway',
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.bold),
+              bodySmall: TextStyle(
+                fontSize: 20,
+                shadows: [
+                  Shadow(
+                    blurRadius: 100,
+                    color: Colors.black87,
+                  )
+                ],
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+              ),
+              displaySmall: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Raleway',
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+              displayMedium: TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+              ),
+              displayLarge: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Raleway',
+                // fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
 
             /// styling the appBar
             appBarTheme: const AppBarTheme(
