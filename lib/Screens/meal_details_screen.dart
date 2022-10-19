@@ -41,7 +41,10 @@ class MealDetails extends StatelessWidget {
 
     final theme = Theme.of(context);
     return Scaffold(
+      /// deleting Floating button
       floatingActionButton: FloatingActionButton(
+        tooltip:
+            'if you dislike it then you can remove it temporarily from the meals List',
         backgroundColor: theme.colorScheme.onSurface,
         child: Icon(
           color: theme.colorScheme.onPrimary,
