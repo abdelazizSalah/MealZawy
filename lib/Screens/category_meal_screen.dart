@@ -13,15 +13,14 @@ class CategoryMealScreen extends StatefulWidget {
 }
 
 class _CategoryMealScreenState extends State<CategoryMealScreen> {
+  /// defining utility variables
   String catID = '';
   String catTitle = '';
   List<Meal> mealsList = [];
-
   bool initiated = false;
 
   @override
   void didChangeDependencies() {
-    print(mealsList.length);
     if (!initiated) {
       final Map<String, String> args =
           ModalRoute.of(context)?.settings.arguments as Map<String, String>;
@@ -44,10 +43,49 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
     super.didChangeDependencies();
   }
 
+  /// utility method to help the user to delete items if he didn't liked it
   void deleteMeal(mealID) {
     setState(() {
       mealsList.removeWhere((meal) => mealID == meal.id);
     });
+  }
+
+  /// return empty img and text if there is no more items in the mealsList
+  Widget buildEmpty() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        children: [
+          const Text('No More Meals Found'),
+          const SizedBox(
+            height: 40,
+          ),
+          Image.asset(
+            'assets/imgs/waiting.png',
+            fit: BoxFit.contain,
+            height: 500,
+          )
+        ],
+      ),
+    );
+  }
+
+  /// return a list if there are items in the mealsList
+  Widget buildNotEmpty() {
+    return ListView.builder(
+      itemBuilder: (ctx, index) {
+        return MealItem(
+            deleteMeal: deleteMeal,
+            id: mealsList[index].id,
+            affordability: mealsList[index].affordability,
+            complexity: mealsList[index].complexity,
+            duration: mealsList[index].duration,
+            imgURL: mealsList[index].imgURL,
+            title: mealsList[index].title);
+      },
+      itemCount: mealsList.length,
+    );
   }
 
   @override
@@ -57,38 +95,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
           title: Text(catTitle),
         ),
         body: Container(
-          color: Theme.of(context).colorScheme.background,
-          child: mealsList.isEmpty == true
-              ? Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      const Text('No More Meals Found'),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Image.asset(
-                        'assets/imgs/waiting.png',
-                        fit: BoxFit.contain,
-                        height: 500,
-                      )
-                    ],
-                  ),
-                )
-              : ListView.builder(
-                  itemBuilder: (ctx, index) {
-                    return MealItem(
-                        deleteMeal: deleteMeal,
-                        id: mealsList[index].id,
-                        affordability: mealsList[index].affordability,
-                        complexity: mealsList[index].complexity,
-                        duration: mealsList[index].duration,
-                        imgURL: mealsList[index].imgURL,
-                        title: mealsList[index].title);
-                  },
-                  itemCount: mealsList.length,
-                ),
-        ));
+            color: Theme.of(context).colorScheme.background,
+            child: mealsList.isEmpty == true ? buildEmpty() : buildNotEmpty()));
   }
 }
