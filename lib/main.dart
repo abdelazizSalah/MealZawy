@@ -3,18 +3,69 @@
  * @date 8/10/2022
  * @author Abdelaziz Salah
  */
-import 'package:project/Screens/tabs_screen.dart';
+import 'package:project/Data/dummy_data.dart';
 
+import './Screens/filters_screen.dart';
+import './Screens/tabs_screen.dart';
 import './Screens/meal_details_screen.dart';
 import './Screens/category_meal_screen.dart';
-import 'Screens/categories_Screen.dart';
+import './Screens/categories_Screen.dart';
+import 'Models/meal.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
   static String routeName = '/category_route';
+
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<Meal> myMeals = dummyMeals;
+  List<Meal> favorites = [];
+
+  bool isItFav(String id) {
+    return favorites.any((meal) => meal.id == id);
+  }
+
+  void toggleFav(String id) {
+    var mealIndex = favorites.indexWhere((meal) => meal.id == id);
+    setState(() {
+      if (mealIndex >= 0) {
+        /// this means that it is exist so we need to remove it from there
+        favorites.removeAt(mealIndex);
+      } else {
+        /// this means that we want to add it
+        favorites.add(myMeals.firstWhere((meal) => meal.id == id));
+      }
+    });
+  }
+
+  Map<String, bool> filter = {
+    'Vegiterian': false,
+    'Vegan': false,
+    'Gluten': false,
+    'Lactose': false,
+  };
+
+  void saveFilters(Map<String, bool> newFilters) {
+    setState(() {
+      filter = newFilters;
+
+      // exclute the meals
+      myMeals = dummyMeals.where((meal) {
+        if (!meal.isGlutenFree && filter['Gluten'] as bool) return false;
+        if (!meal.isLactoseFree && filter['Lactose'] as bool) return false;
+        if (!meal.isVegetarian && filter['Vegiterian'] as bool) return false;
+        if (!meal.isVegan && filter['Vegan'] as bool) return false;
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,43 +78,55 @@ class MyApp extends StatelessWidget {
                 onPrimary: Color.fromARGB(255, 255, 183, 77),
                 secondary: Colors.amber,
                 onSecondary: Colors.orange,
-                error: Colors.orange,
+                error: Color.fromARGB(255, 7, 50, 145),
                 onError: Colors.orange,
                 background: Color.fromARGB(255, 249, 243, 236),
                 onBackground: Colors.orange,
                 surface: Color.fromARGB(50, 169, 144, 239),
-                onSurface: Colors.orange),
+                onSurface: Color.fromARGB(255, 41, 97, 182)),
             fontFamily: 'Raleway',
 
             /// styling the text
             textTheme: const TextTheme(
-
-                /// styling the body in the large formate
-                bodyLarge: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                bodyMedium: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'RobotoCondensed',
-                    fontWeight: FontWeight.bold),
-                bodySmall: TextStyle(
+              /// styling the body in the large formate
+              bodyLarge: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              bodyMedium: TextStyle(
                   fontSize: 20,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 100,
-                      color: Colors.black87,
-                    )
-                  ],
                   fontFamily: 'RobotoCondensed',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber,
-                ),
-                displaySmall: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Raleway',
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.bold),
+              bodySmall: TextStyle(
+                fontSize: 20,
+                shadows: [
+                  Shadow(
+                    blurRadius: 100,
+                    color: Colors.black87,
+                  )
+                ],
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+              ),
+              displaySmall: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Raleway',
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+              displayMedium: TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+              ),
+              displayLarge: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Raleway',
+                // fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
 
             /// styling the appBar
             appBarTheme: const AppBarTheme(
@@ -87,9 +150,9 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                        blurRadius: 250,
-                        color: Colors.amber,
-                      )
+                          blurRadius: 100,
+                          color: Colors.amber,
+                          offset: Offset(10, 10))
                     ])
 
                 /// end of the appBarTheme
@@ -97,9 +160,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          MyApp.routeName: (ctx) => const CategoryMealScreen(),
-          '/': (ctx) => const TabsScreen(),
-          MealDetails.routeName: (ctx) => const MealDetails(),
+          '/': (ctx) => TabsScreen(favs: favorites),
+          MyApp.routeName: (ctx) => CategoryMealScreen(meals: myMeals),
+          MealDetails.routeName: (ctx) =>
+              MealDetails(isItFav: isItFav, toggleFav: toggleFav),
+          FiltersScreen.routeName: (ctx) => FiltersScreen(
+                filters: filter,
+                saveFilters: saveFilters,
+              ),
         },
         // onGenerateRoute: (settings) => MaterialPageRoute(builder: )),
         onUnknownRoute: (settings) {

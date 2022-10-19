@@ -1,55 +1,70 @@
+/// this file contains the Tabs and how we can add
+/// a bottom tab and how I want to show them
+
 import 'package:flutter/material.dart';
+import '../Wigdets/main_drawer.dart';
 import '../Screens/categories_Screen.dart';
 import '../Screens/favorites.dart';
+import '../Models/meal.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
-
+  const TabsScreen({super.key, required this.favs});
+  final List<Meal> favs;
   @override
   State<TabsScreen> createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  bool _iconColor1 = false;
-  bool _iconColor2 = true;
+  int _screenIndex = 0;
+  List<Widget> _screens = [];
+
+  @override
+  void initState() {
+    _screens = [
+      const CategoriesScreen(),
+      Favorites(
+        favorites: widget.favs,
+      )
+    ];
+    super.initState();
+  }
+
+  void _selectScreen(index) {
+    setState(() {
+      _screenIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            title: const Text('MealZawy'),
-            bottom: TabBar(
-                onTap: (value) {
-                  setState(() {
-                    _iconColor1 = !_iconColor1;
-                    _iconColor2 = !_iconColor2;
-                  });
-                },
-                indicatorColor: Theme.of(context).colorScheme.secondary,
-                tabs: [
-                  Tab(
-                    icon: Icon(
-                      color: _iconColor2 == true ? Colors.amber : Colors.white,
-                      Icons.category,
-                    ),
-                    text: 'Categories',
-                    iconMargin: const EdgeInsets.all(4),
-                  ),
-                  Tab(
-                    icon: Icon(
-                      Icons.favorite,
-                      color: _iconColor1 == true ? Colors.amber : Colors.white,
-                    ),
-                    text: 'Favorites',
-                    iconMargin: const EdgeInsets.all(4),
-                  ),
-                ]),
-          ),
-          body: const TabBarView(
-            children: [CategoriesScreen(), Favorites()],
-          )),
+    return Scaffold(
+      appBar: AppBar(title: const Text('MealZawy')),
+      drawer: const MainDrawer(),
+      body: _screens[_screenIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 200,
+        showSelectedLabels: true,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.amber,
+        currentIndex: _screenIndex,
+        type: BottomNavigationBarType.shifting,
+        onTap: _selectScreen,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        items: [
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              icon: const Icon(
+                Icons.category,
+              ),
+              label: 'Categories'),
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).colorScheme.error,
+              icon: const Icon(
+                Icons.favorite,
+              ),
+              label: 'Favorites'),
+        ],
+      ),
     );
   }
 }

@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function deleteMeal;
 
   const MealItem(
       {super.key,
@@ -16,11 +17,16 @@ class MealItem extends StatelessWidget {
       required this.id,
       required this.complexity,
       required this.duration,
+      required this.deleteMeal,
       required this.imgURL,
       required this.title});
 
   void selectMeal(context) {
-    Navigator.of(context).pushNamed(MealDetails.routeName, arguments: id);
+    Navigator.of(context).pushNamed(MealDetails.routeName, arguments: id).then(
+        // then block
+        (mealID) {
+      if (mealID != null) deleteMeal(mealID);
+    });
   }
 
   String get _affordablilityText {

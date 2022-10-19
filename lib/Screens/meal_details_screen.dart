@@ -1,9 +1,17 @@
+/// this file contains the screen of each meal details and how
+/// we can prepare each meal
+
 import 'package:flutter/material.dart';
 import '../Data/dummy_data.dart';
 
 class MealDetails extends StatelessWidget {
-  const MealDetails({super.key});
+  const MealDetails(
+      {super.key, required this.toggleFav, required this.isItFav});
   static const routeName = '/meals-route';
+  // ignore: prefer_typing_uninitialized_variables
+  final toggleFav;
+  // ignore: prefer_typing_uninitialized_variables
+  final isItFav;
 
   /// utility method to avoid duplication of code
   /// responsiple for displaying the container and list widget in side it
@@ -18,7 +26,7 @@ class MealDetails extends StatelessWidget {
         decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color.fromARGB(255, 49, 51, 194))),
+            border: Border.all(color: theme.colorScheme.onSurface)),
         child: widChild);
   }
 
@@ -41,7 +49,31 @@ class MealDetails extends StatelessWidget {
 
     final theme = Theme.of(context);
     return Scaffold(
+      /// deleting Floating button
+      floatingActionButton: FloatingActionButton(
+        tooltip:
+            'if you dislike it then you can remove it temporarily from the meals List',
+        backgroundColor: theme.colorScheme.onSurface,
+        child: Icon(
+          color: theme.colorScheme.onPrimary,
+          Icons.delete,
+        ),
+        onPressed: () {
+          /// we can send with the pop any thing we want to be
+          /// sent back to the calling widget which helps us to
+          /// transfere the data back and forth
+          Navigator.of(context).pop(id);
+        },
+      ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              tooltip: isItFav(id)
+                  ? 'Remove it from favorites!'
+                  : 'Add it to favorites!',
+              onPressed: () => toggleFav(id),
+              icon: Icon(isItFav(id) ? Icons.star : Icons.star_border))
+        ],
         title: Text(selectedMeal.title),
       ),
       body: Container(

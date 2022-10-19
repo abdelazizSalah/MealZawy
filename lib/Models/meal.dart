@@ -1,3 +1,4 @@
+/// This file contains the blue print for all the Meals objects
 enum Complexity { simple, challenging, hard }
 
 enum Affordability { affordable, pricy, luxurious }
