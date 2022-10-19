@@ -13,10 +13,12 @@ import './Screens/categories_Screen.dart';
 import 'Models/meal.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   static String routeName = '/category_route';
+
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
