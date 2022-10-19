@@ -1,11 +1,16 @@
+/// this file contains the screen of each meal details and how
+/// we can prepare each meal
+
 import 'package:flutter/material.dart';
 import '../Data/dummy_data.dart';
 
 class MealDetails extends StatelessWidget {
-  MealDetails({super.key, required this.toggleFav, required this.isItFav});
+  const MealDetails(
+      {super.key, required this.toggleFav, required this.isItFav});
   static const routeName = '/meals-route';
-  // bool isFav = false;
+  // ignore: prefer_typing_uninitialized_variables
   final toggleFav;
+  // ignore: prefer_typing_uninitialized_variables
   final isItFav;
 
   /// utility method to avoid duplication of code

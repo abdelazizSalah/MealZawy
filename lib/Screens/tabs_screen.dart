@@ -1,3 +1,6 @@
+/// this file contains the Tabs and how we can add
+/// a bottom tab and how I want to show them
+
 import 'package:flutter/material.dart';
 import '../Wigdets/main_drawer.dart';
 import '../Screens/categories_Screen.dart';

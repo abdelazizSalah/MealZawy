@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+/// This file contains all the core data for the app which are dummy categories
+/// and dummy Meals which are used in the other screen data.
 
+import 'package:flutter/material.dart';
 import '../Models/categories.dart';
 import '../Models/meal.dart';
 

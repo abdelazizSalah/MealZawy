@@ -1,3 +1,5 @@
+/// this file contains the screen of the favorite meals and how I want to show them
+
 import 'package:flutter/material.dart';
 import '../Models/meal.dart';
 import '../Wigdets/meal_item.dart';

@@ -1,3 +1,4 @@
+/// this file contains the screen of the categories and how I want to show them
 import 'package:flutter/material.dart';
 import '../Wigdets/category_item.dart';
 import '../Data/dummy_data.dart';
